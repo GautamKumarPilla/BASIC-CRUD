@@ -4,9 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';import { RouterProvider } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
-import UpdateForm from './UpdateForm';
-import CourseForm from './CourseForm';
-import CForm from './CForm';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -14,18 +11,9 @@ const router = createBrowserRouter([
     path:'/',
     element:<App></App>,
     children:[
-      {
-        path:'/course',
-        element:<CForm></CForm>
-      },
-      {
-        path:'/courseForm',
-        element:<CourseForm></CourseForm>
-      },
-      {
-        path:'/updateCourse/:id',
-        element:<UpdateForm></UpdateForm>
-      }
+       {
+        
+       }
     ]}
 ])
 root.render(
