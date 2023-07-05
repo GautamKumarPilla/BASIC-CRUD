@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';import { RouterProvider } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
+import Register from './Register';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -12,7 +13,8 @@ const router = createBrowserRouter([
     element:<App></App>,
     children:[
        {
-        
+          path:'/register',
+          element:<Register></Register>
        }
     ]}
 ])
