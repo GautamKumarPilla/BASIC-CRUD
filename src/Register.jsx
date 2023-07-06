@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import { Formik, Field } from "formik";
 import * as Yup from 'yup';
-
+import axios from "axios";
 
 const Register = ()=>{
   const [enquiryData, setEnquiryData] = useState({
-            fullname: '',
-            experience: '',
-            course: '',
-            academics: '',
-            contact: 0,
-            email: ''
+            
   })
 
   return(
@@ -18,16 +13,27 @@ const Register = ()=>{
 
         <div className="w-50">
             <Formik
-                initialValues={{...enquiryData}}
+                initialValues={{
+                    fullname: '',
+                    experience: '',
+                    course: '',
+                    academics: '',
+                    contact: '',
+                    email: ''
+                }}
                 
                 onSubmit={(values)=>{
                     console.log(values);
+                    axios.post('http://localhost:4500/register',values).then((res)=>{
+                       // console.log(res.data);
+                    })
+                    
                 }}
 
                 validationSchema={Yup.object({
                     fullname:Yup.string().required('*Enter your fullname'),
                     academics:Yup.string().required('*Required field'),
-                    contact:Yup.string().min(10,'*Must be 10 digits').required('*Required field'),
+                    contact:Yup.number().min(10,'*Must be 10 digits').required('*Required field'),
                     email:Yup.string().required('*Required field')
                 })}
             > 
@@ -58,7 +64,7 @@ const Register = ()=>{
                           <label className="form-check-label">
                               <Field
                                   type="radio"
-                                  name="radioChecked"
+                                  name="experience"
                                   value='Fresher'
                                   className="form-check-input"
                               ></Field>
@@ -67,7 +73,7 @@ const Register = ()=>{
                           <label className="form-check-label">
                               <Field
                                   type="radio"
-                                  name="radioChecked"
+                                  name="experience"
                                   value='0-5'
                                   className="ms-2 form-check-input"
                               ></Field>
@@ -76,7 +82,7 @@ const Register = ()=>{
                           <label className="form-check-label">
                               <Field
                                   type="radio"
-                                  name="radioChecked"
+                                  name="experience"
                                   value='5-10'
                                   className="ms-2 form-check-input"
                               ></Field>
@@ -88,7 +94,7 @@ const Register = ()=>{
                           <label className="form-check-label ms-4">
                               <Field
                                   type="checkbox"
-                                  name="checked"
+                                  name="course"
                                   value='Frontend'
                                   className="form-check-input"
                               ></Field>
@@ -97,7 +103,7 @@ const Register = ()=>{
                           <label className="form-check-label">
                               <Field
                                   type="checkbox"
-                                  name="checked"
+                                  name="course"
                                   value='ReactJS'
                                   className="ms-2 form-check-input"
                               ></Field>
@@ -106,7 +112,7 @@ const Register = ()=>{
                           <label className="form-check-label">
                               <Field
                                   type="checkbox"
-                                  name="checked"
+                                  name="course"
                                   value='Angular'
                                   className="ms-2 form-check-input"
                               ></Field>
@@ -115,7 +121,7 @@ const Register = ()=>{
                           <label className="form-check-label">
                               <Field
                                   type="checkbox"
-                                  name="checked"
+                                  name="course"
                                   value='Backend'
                                   className="ms-2 form-check-input"
                               ></Field>
@@ -124,7 +130,7 @@ const Register = ()=>{
                           <label className="form-check-label">
                               <Field
                                   type="checkbox"
-                                  name="checked"
+                                  name="course"
                                   value='Java-Full Stack'
                                   className="ms-2 form-check-input"
                               ></Field>
@@ -133,7 +139,7 @@ const Register = ()=>{
                           <label className="form-check-label">
                               <Field
                                   type="checkbox"
-                                  name="checked"
+                                  name="course"
                                   value='Core-Java'
                                   className="ms-2 form-check-input"
                               ></Field>
@@ -142,7 +148,7 @@ const Register = ()=>{
                           <label className="form-check-label">
                               <Field
                                   type="checkbox"
-                                  name="checked"
+                                  name="course"
                                   value='Python'
                                   className="ms-2 form-check-input"
                               ></Field>
@@ -151,7 +157,7 @@ const Register = ()=>{
                           <label className="form-check-label">
                               <Field
                                   type="checkbox"
-                                  name="checked"
+                                  name="course"
                                   value='Other'
                                   className="ms-2 form-check-input"
                               ></Field>
@@ -171,7 +177,7 @@ const Register = ()=>{
 
                       <label htmlFor="us" className="form-label mt-2">Contact:</label>
                       <Field
-                          type="text"
+                          type="number"
                           name="contact"
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -182,7 +188,7 @@ const Register = ()=>{
 
                       <label htmlFor="us" className="form-label mt-2">Email:</label>
                       <Field
-                          type="text"
+                          type="email"
                           name="email"
                           onChange={handleChange}
                           onBlur={handleBlur}
