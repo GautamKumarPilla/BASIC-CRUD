@@ -1,36 +1,106 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Field, Formik } from "formik";
+import * as Yup from 'yup';
 
 const Login =()=>{
-    const teleport = useNavigate();
 
     useEffect(() =>{
         },[])
-       
         
-    return(
-    <div className="mt-5">
-    <div className="w-25 mx-auto">
-        <form className="form-control bg-dark">
-            <h3 className="text-primary text-center">Login</h3>
-            <label htmlFor="" className="form-lable mt-2 text-success">Username</label>
-            <input type="text" required placeholder="Enter username" className="form-control" />
-            <label htmlFor="" className="form-lable mt-2 text-danger">Password</label>
-            <input type="password" required placeholder="Enter password" className="form-control"/>
-            <div className="mt-2">
-            <Link to="/mail" className="text-warning text-decoration-none"><p>Forgot Password?</p></Link>
-            </div>
-            <div className="d-flex justify-content-center">
-            <button className="btn btn-outline-light border border-3 border-info mt-2" onClick={()=>{teleport('/')}}>Submit</button>
-            </div>
-        </form>
-        <Link to="/signup" className="text-light">Don't have an account yet?(SignUp)</Link>
-    </div>
-    </div> 
-    )
-}; 
+        const navigate = useNavigate();
 
-//style={{onhover:'backgroundColor:blue'}}
+        return(
+            <div className="login-text">
+                <div className="w-25 mx-auto">
+                    <Formik
+                        initialValues={{
+                            username:'',
+                            password:''
+                        }}
+                        
+                        onSubmit={(values,x)=>{
+                            console.log(values);
+                            axios.get(`http://localhost:4500/admin?username=${values.username}&password=${values.password}`)
+                            .then((res)=>{
+                                console.log(res.data);
+                                if(res.data.length>=1){
+                                    alert("Login Success")
+                                    window.localStorage.setItem('fullname',res.data[0].fullname)
+                                    navigate('/adminUser');  
+                                }
+                                else{
+                                    alert("credentials are invalid");
+                                }
+                                console.log(x.resetForm);
+                            })
+                            .catch((err)=>{
+                                console.log("error-occured:",err)
+                            })
+                        }}
+    
+                        validationSchema={Yup.object({
+                            username:Yup.string().required('*enter your username'),
+                            password:Yup.string().required('*enter your password')
+                        })}
+                    >
+                    
+                    {({
+                    values,
+                    errors,
+                    touched,
+                    handleChange,
+                    handleBlur,
+                    handleSubmit, 
+                    
+                    }) => (
+                    <form onSubmit={handleSubmit} className="form-control" style={{backgroundColor: 'lightsalmon'}}>
+                        <h2 className="border-bottom">Login</h2>
+                        <label htmlFor="us" className="form-lable mt-2">Username</label>
+                        <Field
+                        type="text"
+                        name="username"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.username}
+                        placeholder="Enter username"
+                        className="form-control"
+                        ></Field>
+                        <div className="text-danger">{errors.username && touched.username && errors.username}</div>
+    
+                        <label htmlFor="ps" className="form-lable mt-2">Password</label>
+                        <Field
+                        type="text"
+                        name="password"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.password}
+                        placeholder="Enter password"
+                        className="form-control"
+                        ></Field>
+                        <div className="text-danger">{errors.password && touched.password && errors.password}</div>
+                        
+                        <div className="mt-1">
+                            <small>
+                                <Link to="">Forgot password?</Link>
+                            </small>
+                        </div>
+                        <div>
+                            <button type="submit" className="btn btn-dark w-25 mx-1 mt-2">Login</button>
+                        </div>
+                        <div className="mt-3">
+                            <small>
+                                Don't have account? &nbsp;<Link to="/register">Sign Up</Link>
+                            </small>
+                        </div>
+                    </form>
+                    )}
+    
+                    </Formik>
+                </div>
+            </div>
+    )
+    };
 
 export default Login;

@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';import { RouterProvider } from 'react-router';
+import reportWebVitals from './reportWebVitals';
+import { RouterProvider } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
 import Register from './Register';
 import Login from './Login';
+import Adminuser from './Adminuser';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -20,6 +22,10 @@ const router = createBrowserRouter([
        {
           path:'/login',
           element:<Login></Login>
+       },
+       {
+          path:'/adminUser',
+          element:<Adminuser></Adminuser>
        }
     ]}
 ])

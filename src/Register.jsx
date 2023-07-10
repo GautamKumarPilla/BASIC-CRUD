@@ -27,7 +27,6 @@ const Register = ()=>{
                     axios.post('http://localhost:4500/register',values).then((res)=>{
                        // console.log(res.data);
                     })
-                    
                 }}
 
                 validationSchema={Yup.object({

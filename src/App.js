@@ -1,6 +1,8 @@
 import { Link, Outlet } from 'react-router-dom';
 import './App.css';
 import React from 'react';
+import Pf from './Pf';
+import Adminuser from './Adminuser';
 
 function App() {
   return (
@@ -11,9 +13,9 @@ function App() {
         <Link to='/register'><h5 className='mt-2'>Register</h5></Link>
         <Link to='/login'><h5 className='me-2 mt-2'>Login</h5></Link>
         </div>
+        
       </div>
         <Outlet />
-    
     </div>
   );
 }
