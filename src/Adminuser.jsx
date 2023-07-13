@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-
+import { Link } from 'react-router-dom';
 
 function Adminuser() {
   const [data, setData] = useState([]);
@@ -12,22 +12,18 @@ function Adminuser() {
             console.log([...res.data]);
       })
   },[]);
-
   
 return (
   <div>
         <h1>Admin user details</h1>
        <center>
-       <table cellPadding={'10px'} cellSpacing={'5px'} border={'4px outset'} style={{backgroundColor:'beige'}}>
-                <thead align={'center'} style={{border:'2px solid blue'}}>
+       <table cellPadding={'10px'} border={'4px'} style={{backgroundColor:'bisque'}}>
+                <thead align={'center'} style={{border:'2px solid'}}>
                   <tr>
                     <th>Fullname</th>
                     <th>Course</th>
-                    <th>Academics</th>
-                    <th>Experience</th>
-                    <th>Contact</th>
-                    <th>Email</th>
                     <th>Unique-ID</th>
+                    <th>Details</th>
                   </tr>
                 </thead>
                 <tbody align={'center'}>
@@ -36,12 +32,15 @@ return (
               return(
                 <tr style={{border:'2px solid'}}>
                   <td>{e.fullname}</td>
-                  <td>{e.course}</td>
-                  <td>{e.academics}</td>
-                  <td>{e.experience}</td>
-                  <td>{e.contact}</td>
-                  <td>{e.email}</td>
+                  <td>
+                    {
+                      e.course.map((a,i)=>{
+                         return  <ul type='circle'><li>{a}</li></ul>
+                      })
+                    }
+                  </td>
                   <td>{e._id}</td>
+                  <td><Link to={`/enquirydata/${e._id}`} type='text-decoration-none' style={{}}>Expand+</Link></td>
                 </tr>
               )
            })

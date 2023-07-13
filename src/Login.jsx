@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Field, Formik } from "formik";
 import * as Yup from 'yup';
@@ -7,12 +7,13 @@ import * as Yup from 'yup';
 const Login =()=>{
 
     useEffect(() =>{
+
         },[])
         
         const navigate = useNavigate();
 
         return(
-            <div className="login-text">
+            <div className="mt-5">
                 <div className="w-25 mx-auto">
                     <Formik
                         initialValues={{
@@ -22,13 +23,14 @@ const Login =()=>{
                         
                         onSubmit={(values,x)=>{
                             console.log(values);
-                            axios.get(`http://localhost:4500/admin?username=${values.username}&password=${values.password}`)
+                            axios.post(`http://localhost:4500/admin?username=${values.username}&password=${values.password}`,values)
                             .then((res)=>{
                                 console.log(res.data);
-                                if(res.data.length>=1){
-                                    alert("Login Success")
-                                    window.localStorage.setItem('fullname',res.data[0].fullname)
-                                    navigate('/adminUser');  
+                                console.log(res.data.length);
+
+                                if(res.data.length===1){
+                                    alert("Login Success");
+                                    navigate('/adminUser');
                                 }
                                 else{
                                     alert("credentials are invalid");
@@ -55,7 +57,7 @@ const Login =()=>{
                     handleSubmit, 
                     
                     }) => (
-                    <form onSubmit={handleSubmit} className="form-control" style={{backgroundColor: 'lightsalmon'}}>
+                    <form onSubmit={handleSubmit} className="form-control border border-3 mt-5 shadow-lg p-4 mb-5" style={{backgroundColor: 'lightsalmon'}}>
                         <h2 className="border-bottom">Login</h2>
                         <label htmlFor="us" className="form-lable mt-2">Username</label>
                         <Field
@@ -71,7 +73,7 @@ const Login =()=>{
     
                         <label htmlFor="ps" className="form-lable mt-2">Password</label>
                         <Field
-                        type="text"
+                        type="password"
                         name="password"
                         onChange={handleChange}
                         onBlur={handleBlur}

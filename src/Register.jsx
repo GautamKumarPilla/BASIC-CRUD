@@ -4,9 +4,9 @@ import * as Yup from 'yup';
 import axios from "axios";
 
 const Register = ()=>{
-  const [enquiryData, setEnquiryData] = useState({
+//   const [enquiryData, setEnquiryData] = useState({
             
-  })
+//   })
 
   return(
     <div className="mt-5 d-flex justify-content-center">

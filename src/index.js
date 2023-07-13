@@ -8,6 +8,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Register from './Register';
 import Login from './Login';
 import Adminuser from './Adminuser';
+import EnquiryData from './EnquiryData';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
        {
           path:'/adminUser',
           element:<Adminuser></Adminuser>
+       },
+       {
+          path:'/enquirydata/:id',
+          element:<EnquiryData></EnquiryData>
        }
     ]}
 ])
@@ -35,5 +40,5 @@ root.render(
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals 
 reportWebVitals();
