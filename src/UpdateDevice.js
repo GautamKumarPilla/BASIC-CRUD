@@ -8,23 +8,17 @@ const UpdateDevice = () => {
     const {id} = useParams();
 
     useEffect(()=>{
-        axios.get('http://localhost:4500/device').then((res)=>{
+        axios.get(`http://localhost:4500/device/${id}`).then((res)=>{
             console.log(res.data);
-            setDev(res.data);
-            console.log(dev);
+            setDev([...res.data]);
         })
     },[])
+    console.log(dev[0]);
  
   return (
     <div>
        <h1>Update DEVICE</h1>
-        <Formik initialValues={{
-            brand:"",
-            color:"",
-            ram:"",
-            price:""
-        }
-    }
+        <Formik initialValues={[...dev]}
         onSubmit={
             (values)=>{
              console.log(values);
@@ -36,10 +30,10 @@ const UpdateDevice = () => {
                 ({handleSubmit,handleChange,handleBlur})=>{
                     return(
                         <Form>
-                            Brand:<Field name="brand"></Field><br/>
-                            Color:<Field name="color"></Field><br/>
-                            Ram:<Field name="ram"></Field><br/>
-                            Price:<Field name="price"></Field><br/>
+                            Brand:<Field name="brand" value={dev.brand}></Field><br/>
+                            Color:<Field name="color" value="color"></Field><br/>
+                            Ram:<Field name="ram" value="ram"></Field><br/>
+                            Price:<Field name="price" value="price"></Field><br/>
                             <button onClick={handleSubmit}>Update</button>
                         </Form>
                     )
