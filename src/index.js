@@ -10,11 +10,7 @@ const router = createBrowserRouter([
   {
     path:'/',
     element:<App></App>,
-    children:[
-       {
-        
-       }
-    ]}
+  }
 ])
 root.render(
   <RouterProvider router={router} />
