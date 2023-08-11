@@ -4,12 +4,32 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';import { RouterProvider } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
+import Meme from './Memes-api/Meme';
+import Lorem from './Lorem-generator/Lorem';
+import Number from './Number-trivia/Number';
+import Gender from './Gender-Probability/Gender';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
   {
     path:'/',
     element:<App></App>,
+  },
+  {
+    path:'/Meme',
+    element:<Meme></Meme>,
+  },
+  {
+    path:'/Lorem',
+    element:<Lorem></Lorem>
+  },
+  {
+    path:'/Number',
+    element:<Number></Number>
+  },
+  {
+    path:'/Gender',
+    element:<Gender></Gender>
   }
 ])
 root.render(

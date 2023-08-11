@@ -1,0 +1,50 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins",sans-serif;
+}
+#Lorem{
+    background-color: white;
+}
+.app-title{
+    background-color: teal;
+    padding: 2em 0;
+    text-transform: uppercase;
+    text-align: center;
+    color: #ffffff;
+}
+.input-wrapper{
+    font-size: 1.2em;
+    width: 17em;
+    position: relative;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2em;
+    margin-top: 1em;
+}
+
+.input-wrapper input{
+    font-size: 1em;
+    width: 4em;
+    padding: 0.8em;
+    border-radius: 0.5em;
+    border: 2px solid black;
+}
+#generate-btn,#copy-btn{
+    font-size: 1em;
+    padding: 0.8em 1em;
+    background-color: rgb(177, 234, 7);
+    border:none;
+    outline: none;
+    border-radius: 0.5em;
+    color:#ffffff;
+}
+
+#para{
+    text-align: center;
+    color: #303030;
+    line-height: 1.8em;
+}
+
