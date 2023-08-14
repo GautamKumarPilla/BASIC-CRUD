@@ -8,6 +8,8 @@ import Meme from './Memes-api/Meme';
 import Lorem from './Lorem-generator/Lorem';
 import Number from './Number-trivia/Number';
 import Gender from './Gender-Probability/Gender';
+import Currency from './Currency-converter/Currency';
+import MapComponent from './Trial';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -30,6 +32,10 @@ const router = createBrowserRouter([
   {
     path:'/Gender',
     element:<Gender></Gender>
+  },
+  {
+    path:'/Currency',
+    element:<Currency></Currency>
   }
 ])
 root.render(

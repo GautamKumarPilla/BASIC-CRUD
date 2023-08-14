@@ -1,0 +1,40 @@
+const options = {
+  method: 'GET',
+  url: 'https://numbersapi.p.rapidapi.com/6/21/date',
+  params: {
+    fragment: 'true',
+    json: 'true'
+  },
+  headers: {
+    'X-RapidAPI-Key': 'ca11ac3789mshb659698bd01494dp1bc791jsn6de043a4839d',
+    'X-RapidAPI-Host': 'numbersapi.p.rapidapi.com'
+  }
+};
+
+try {
+	const response = await axios.request(options);
+	console.log(response.data);
+} catch (error) {
+	console.error(error);
+}
+
+
+const Number = () => {
+
+  const [data, setData] = useState([]);
+
+  let apiKey = "ca11ac3789mshb659698bd01494dp1bc791jsn6de043a4839d";
+
+  let options = {
+    method : "GET", 
+    headers : { "X-Api-Key": apiKey }
+  };
+  let url = "https://numbersapi.p.rapidapi.com/1729/math";
+
+  const handleChange = () => {
+    let finalURL = url;
+    fetch(finalURL,options).then((res)=>res.json())
+    .then((data)=>{
+      console.log(data);
+    })
+  }
