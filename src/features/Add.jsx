@@ -3,10 +3,12 @@ import {Formik, Field ,Form} from 'formik';
 import { useAddDeviceMutation } from '../Services/Devices';
 import * as Yup from 'yup';
 import '../App.css';
+import { useNavigate } from 'react-router';
 
 const Add=()=> {
    const [dev, x] = useAddDeviceMutation();
    console.log(useAddDeviceMutation());
+   var nav = useNavigate();
 
    const validSchema = Yup.object().shape({
     brand: Yup.string()
@@ -28,6 +30,7 @@ const Add=()=> {
   return (
     <div>
         <h1>Add a device</h1>
+        <button className='btn btn-dark ms-2' onClick={()=>{nav('/')}}>Back</button>
         <div className='d-flex justify-content-center rounded-5 shadow-lg p-3 bg-white rounded bg-warning-subtle w-25 mx-auto'>
         <Formik
         initialValues={{

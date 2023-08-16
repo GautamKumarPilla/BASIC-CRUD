@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Link, Outlet } from 'react-router-dom';
 import { useDeleteDeviceByIdMutation, useGetDeviceallQuery } from '../Services/Devices';
 
@@ -9,15 +9,24 @@ const Device=()=> {
   // Individual hooks are also accessible under the generated endpoints:
   // const { data, error, isLoading } = pokemonApi.endpoints.getPokemonByName.useQuery('bulbasaur')
   console.log(data);
-  
+  const [search, setSearch] = useState("");
+
+  let news = data;
+  const filteredSearch = news.filter(
+    (item) =>
+      item.brand.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div className=''>
       <button className='btn btn-dark m-1'><Link to={`/addDevice`} className='text-decoration-none text-danger'>Add a device</Link></button>
       <Outlet></Outlet>
       <h1>Device Data</h1>
+      <input type="text" className="form-control-sm" placeholder="Search by brand" name="search" value={search} onChange={(e)=>{setSearch(e.target.value)}} />
         { error ? (<>Oh no, there was an error</>)
           : isLoading ? (<>Loading...</>)
           : data ? (<div className='spacing'> {
+
             data.map((a,i)=>{
               return <tr className='card'>
                   <td>Brand : {a.brand}</td>
@@ -30,10 +39,10 @@ const Device=()=> {
                   </td>
               </tr>
             })
-          } </div>) 
+          } </div>)  
           : null
         }
-        
+         
     </div>
   )
 }
