@@ -4,25 +4,25 @@ import { Formik, Form, Field } from 'formik';
 import { useParams } from 'react-router';
 
 const UpdateDevice = () => {
-    const [dev, setDev] = useState([]);
+    const [cus, setCus] = useState([]);
     const {id} = useParams();
 
     useEffect(()=>{
-        axios.get(`http://localhost:4500/device/${id}`).then((res)=>{
+        axios.get(`http://localhost:4600/customers/${id}`).then((res)=>{
             console.log(res.data);
-            setDev([...res.data]);
+            setCus([...res.data]);
         })
     },[])
-    console.log(dev[0]);
+    console.log(cus[0]);
  
   return (
     <div>
-       <h1>Update DEVICE</h1>
-        <Formik initialValues={[...dev]}
+       <h1>Update Customer</h1>
+        <Formik initialValues={[...cus]}
         onSubmit={
             (values)=>{
              console.log(values);
-             axios.put(`http://localhost:4500/update/${id}`,values)
+             axios.put(`http://localhost:4600/update/${id}`,values)
         }
     }
         >
@@ -30,10 +30,9 @@ const UpdateDevice = () => {
                 ({handleSubmit,handleChange,handleBlur})=>{
                     return(
                         <Form>
-                            Brand:<Field name="brand" value={dev.brand}></Field><br/>
-                            Color:<Field name="color" value="color"></Field><br/>
-                            Ram:<Field name="ram" value="ram"></Field><br/>
-                            Price:<Field name="price" value="price"></Field><br/>
+                            Firstname:<Field name="firstname"></Field><br/>
+                            Lastname:<Field name="lastname"></Field><br/>
+                            Age:<Field name="age"></Field><br/>
                             <button onClick={handleSubmit}>Update</button>
                         </Form>
                     )
