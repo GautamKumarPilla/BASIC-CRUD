@@ -2,26 +2,26 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const deviceApi = createApi({
   reducerPath: 'deviceApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4500' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4500/' }),
   endpoints: (builder) => ({
     getDeviceall: builder.query({
-      query: () => `devices`,
+      query: () => `device`,
     }),
     addDevice: builder.mutation({
       query: (dev) => {
         return{
-                url:'/addDevice',
+                url:'/add',
                 method: 'POST',
                 body: dev
               }
       }
     }),
     getDeviceById: builder.query({
-      query: (id) => `updateDevice/${id}`
+      query: (id) => `device/${id}`
     }),
     updateDeviceById: builder.mutation({
       query: (dev) => ({
-        url: `updateDevice/${dev._id}`,
+        url: `update/${dev._id}`,
         method: 'PUT',
         body: dev,
       })
@@ -29,7 +29,7 @@ export const deviceApi = createApi({
     deleteDeviceById: builder.mutation({
       query: (id) => {
               return {
-                      url: `deleteDevice/${id}`,
+                      url: `delete/${id}`,
                       method: 'DELETE',
                      }
       }
