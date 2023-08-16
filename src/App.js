@@ -22,17 +22,19 @@ const del=(event)=>{
   return (
     <div>
     <div className='d-flex justify-content-center mt-3'>
-    <table border={5} cellSpacing={5} cellPadding={2} style={{backgroundColor:'seagreen'}}>
+    <table className='table table-bordered w-50' style={{backgroundColor:'#e9c46a',padding:'3px'}}>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Age</th>
       {
           dev && dev.map((a,i)=>{
           return(
-              <tr style={{border:'2px solid black'}}>
+              <tr>
                 <td>{a.firstname}</td>
                 <td>{a.lastname}</td>
                 <td>{a.age}</td>
-                <td><button><Link to={'/add'}>Add</Link></button></td>
-                <td><button onClick={()=>{del(a,i)}}>Delete</button></td>
-                <td><button><Link to={`/update/${a._id}`}>Update</Link></button></td>
+                <td><button onClick={()=>{del(a,i)}} className='btn btn-info'>Delete</button></td>
+                <td><button className='btn btn-info'><Link to={`/update/${a._id}`} className='text-decoration-none'>Update</Link></button></td>
               </tr>
           )
           })
