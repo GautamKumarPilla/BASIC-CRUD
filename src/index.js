@@ -4,8 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';import { RouterProvider } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
-import AddDevice from './AddDevice';
-import UpdateDevice from './UpdateDevice';
+import UpdateCustomer from './UpdateCustomer';
+import AddCustomer from './AddCustomer';
+import Customer from './Customer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -15,11 +16,11 @@ const router = createBrowserRouter([
   },
   {
     path:'/add',
-    element:<AddDevice></AddDevice>
+    element:<AddCustomer></AddCustomer>
   },
   {
     path:'/update/:id',
-    element:<UpdateDevice></UpdateDevice>
+    element:<Customer></Customer>
   }
 ])
 root.render(

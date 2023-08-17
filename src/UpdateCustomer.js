@@ -1,25 +1,19 @@
 import axios from 'axios';
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useNavigate, useParams } from 'react-router';
 
-const UpdateDevice = () => {
-    const [cus, setCus] = useState([]);
-    const {id} = useParams();
+const UpdateCustomer = (props) => {
+    var cus = props.cus;
+    var id = props.id;
     var nav = useNavigate();
+    console.log(props);
 
-    useEffect(()=>{
-        axios.get(`http://localhost:4600/customers/${id}`).then((res)=>{
-            console.log(res.data);
-            setCus(res.data);
-        })
-    },[])
-    console.log(cus);
- 
   return (
     <div>
-       <h1>Update Customer</h1>
-        <Formik initialValues={{...cus}}
+      
+        <Formik 
+        initialValues={{...cus}}
         onSubmit={
             (values)=>{
              console.log(values);
@@ -29,10 +23,10 @@ const UpdateDevice = () => {
     }
         >
             {
-                ({handleSubmit,handleChange,handleBlur})=>{
+                ({handleSubmit})=>{
                     return(
-                        <Form onChange={handleChange}>
-                            Firstname:<Field name="firstname" value={cus.firstname}></Field><br/>
+                        <Form>
+                            Firstname:<Field name="firstname"></Field><br/>
                             Lastname:<Field name="lastname" ></Field><br/>
                             Age:<Field name="age"></Field><br/>
                             <button onClick={handleSubmit}>Update</button>
@@ -45,4 +39,4 @@ const UpdateDevice = () => {
   )
 }
 
-export default UpdateDevice;
+export default UpdateCustomer;

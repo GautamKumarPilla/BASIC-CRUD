@@ -3,7 +3,6 @@ import './App.css';
 import { useEffect,useState } from 'react';
 import axios from 'axios';
 
-
 function App() {
    const [dev, setDev] = useState([]);
 
@@ -22,7 +21,7 @@ const del=(event)=>{
   return (
     <div>
     <div className='d-flex justify-content-center mt-3'>
-    <table className='table table-bordered w-50' style={{backgroundColor:'#e9c46a',padding:'3px'}}>
+    <table className='table table-bordered w-50' style={{backgroundColor:'#80ed99',padding:'3px'}}>
     <th>Firstname</th>
     <th>Lastname</th>
     <th>Age</th>
@@ -33,7 +32,7 @@ const del=(event)=>{
                 <td>{a.firstname}</td>
                 <td>{a.lastname}</td>
                 <td>{a.age}</td>
-                <td><button onClick={()=>{del(a,i)}} className='btn btn-info'>Delete</button></td>
+                <td><button onClick={()=>{del(a,i)}} className='btn btn-secondary'>Delete</button></td>
                 <td><button className='btn btn-info'><Link to={`/update/${a._id}`} className='text-decoration-none'>Update</Link></button></td>
               </tr>
           )

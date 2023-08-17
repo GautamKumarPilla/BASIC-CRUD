@@ -3,7 +3,7 @@ import React, { useEffect,useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useNavigate } from 'react-router';
 
-const AddDevice = () => {
+const AddCustomer = () => {
     const [dev, setDev] = useState([]);
     var navigate = useNavigate();
 
@@ -30,6 +30,7 @@ const AddDevice = () => {
              axios.post("http://localhost:4600/add",values).then(()=>{
                 alert("Added!")
              })
+             navigate('/')
         }
     }
         >
@@ -50,4 +51,4 @@ const AddDevice = () => {
   )
 }
 
-export default AddDevice;
+export default AddCustomer;
